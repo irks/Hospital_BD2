@@ -14,11 +14,6 @@ public class SzczegolyPacjentaController {
     @FXML
     private TableView<Rejestracja> rejestracjePacjentaTabela;
     
-//    @FXML
-//    private TableColumn<Rejestracja, String>   idOddzialuRej;
-    
-//    @FXML
-//    private TableColumn<Rejestracja, String>  nazwaOddzialuRej;
     @FXML
     private TableColumn<Rejestracja, Long> numerRejestracjiPacj;
     
