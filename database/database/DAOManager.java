@@ -19,8 +19,10 @@ public class DAOManager {
  
     //Connection String
     //String connStr = "jdbc:oracle:thin:Username/Password@IP:Port/SID";
-    //Username=iwrobel, Password=HR, IP=ora3.elka.pw.edu.pl, IP=1521, SID=ora3inf
-    private static final String connStr = "jdbc:oracle:thin:iwrobel/iwrobel@ora3.elka.pw.edu.pl:1521/ora3inf";
+    //Username=iwrobel, Password=iwrobel, IP=ora3.elka.pw.edu.pl, IP=1521, SID=ora3inf
+    private static final String connStr = "jdbc:oracle:thin:@ora3.elka.pw.edu.pl:1521:ora3inf";
+    private static final String PASSWORD= "iwrobel"; 
+	private static final String USER= "iwrobel";
  
  
     //Connect to DB
@@ -38,7 +40,7 @@ public class DAOManager {
  
         //Establish the Oracle Connection using Connection String
         try {
-            conn = DriverManager.getConnection(connStr);
+            conn = DriverManager.getConnection(connStr, USER, PASSWORD);
         } catch (SQLException e) {
             System.out.println("Connection Failed! Check output console" + e);
             e.printStackTrace();

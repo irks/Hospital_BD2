@@ -1,0 +1,298 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="611.0" prefWidth="859.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.SzczegolyPacjentaController">
+   <children>
+      <TabPane layoutX="14.0" layoutY="30.0" prefHeight="548.0" prefWidth="814.0" tabClosingPolicy="UNAVAILABLE">
+        <tabs>
+          <Tab text="Pobyty w szpitalu">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <TableView prefHeight="514.0" prefWidth="405.0">
+                          <columns>
+                            <TableColumn prefWidth="134.0" text="Id oddziału" />
+                            <TableColumn prefWidth="105.0" text="Data od" />
+                              <TableColumn prefWidth="109.0" text="Data do" />
+                          </columns>
+                        </TableView>
+                         <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="484.0" layoutX="408.0" layoutY="14.0" stroke="BLACK" strokeType="INSIDE" width="389.0" />
+                        <HBox layoutX="432.0" layoutY="88.0" prefHeight="58.0" prefWidth="350.0">
+                           <children>
+                              <Label text="Data od:" />
+                              <TextField prefHeight="25.0" prefWidth="220.0">
+                                 <opaqueInsets>
+                                    <Insets />
+                                 </opaqueInsets>
+                                 <HBox.margin>
+                                    <Insets left="44.0" />
+                                 </HBox.margin>
+                              </TextField>
+                           </children>
+                        </HBox>
+                        <HBox layoutX="432.0" layoutY="146.0" prefHeight="44.0" prefWidth="350.0">
+                           <children>
+                              <Label text="Data do:" />
+                              <TextField prefHeight="25.0" prefWidth="220.0">
+                                 <HBox.margin>
+                                    <Insets left="44.0" />
+                                 </HBox.margin></TextField>
+                           </children>
+                        </HBox>
+                        <HBox layoutX="432.0" layoutY="34.0" prefHeight="41.0" prefWidth="350.0">
+                           <children>
+                              <Label prefHeight="15.0" prefWidth="70.0" text="Oddział:" />
+                              <TextField alignment="TOP_LEFT" prefHeight="25.0" prefWidth="220.0">
+                                 <HBox.margin>
+                                    <Insets left="30.0" />
+                                 </HBox.margin>
+                                 <opaqueInsets>
+                                    <Insets />
+                                 </opaqueInsets>
+                              </TextField>
+                           </children>
+                        </HBox>
+                        <HBox layoutX="447.0" layoutY="324.0" prefHeight="166.0" prefWidth="320.0">
+                           <children>
+                              <VBox prefHeight="166.0" prefWidth="160.0">
+                                 <children>
+                                    <Button alignment="BOTTOM_CENTER" contentDisplay="TOP" mnemonicParsing="false" prefHeight="25.0" prefWidth="110.0" text="Zapisz" textAlignment="CENTER">
+                                       <VBox.margin>
+                                          <Insets left="25.0" />
+                                       </VBox.margin>
+                                    </Button>
+                                    <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="110.0" text="Wyczyść pola" textAlignment="CENTER">
+                                       <VBox.margin>
+                                          <Insets left="25.0" top="25.0" />
+                                       </VBox.margin>
+                                    </Button>
+                                 </children>
+                              </VBox>
+                              <VBox prefHeight="200.0" prefWidth="160.0">
+                                 <children>
+                                    <Button alignment="CENTER" mnemonicParsing="false" prefWidth="110.0" text="Usuń" textAlignment="CENTER">
+                                       <VBox.margin>
+                                          <Insets left="25.0" />
+                                       </VBox.margin>
+                                    </Button>
+                                    <Button alignment="CENTER" mnemonicParsing="false" prefWidth="110.0" text="Dodaj nowy" textAlignment="CENTER">
+                                       <VBox.margin>
+                                          <Insets left="25.0" top="25.0" />
+                                       </VBox.margin>
+                                    </Button>
+                                 </children>
+                              </VBox>
+                           </children>
+                        </HBox>
+                        <HBox layoutX="432.0" layoutY="196.0" prefHeight="44.0" prefWidth="350.0">
+                           <children>
+                              <Label text="Czy przyjęty " />
+                              <CheckBox mnemonicParsing="false">
+                                 <HBox.margin>
+                                    <Insets left="15.0" />
+                                 </HBox.margin>
+                              </CheckBox>
+                           </children>
+                        </HBox>
+                     </children>
+                  </AnchorPane>
+            </content>
+          </Tab>
+          <Tab text="Dodatkowe konsultacje">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <TableView layoutX="3.0" layoutY="1.0" prefHeight="514.0" prefWidth="356.0">
+                          <columns>
+                            <TableColumn prefWidth="174.0" text="Data" />
+                            <TableColumn prefWidth="180.0" text="Pesel lekarza" />
+                          </columns>
+                        </TableView>
+                        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="484.0" layoutX="408.0" layoutY="14.0" stroke="BLACK" strokeType="INSIDE" width="389.0" />
+                        <HBox layoutX="432.0" layoutY="88.0" prefHeight="58.0" prefWidth="350.0">
+                           <children>
+                              <Label text="Imię lekarza:" />
+                              <TextField prefHeight="25.0" prefWidth="220.0">
+                                 <opaqueInsets>
+                                    <Insets />
+                                 </opaqueInsets>
+                                 <HBox.margin>
+                                    <Insets left="32.0" />
+                                 </HBox.margin>
+                              </TextField>
+                           </children>
+                        </HBox>
+                        <HBox layoutX="432.0" layoutY="146.0" prefHeight="44.0" prefWidth="350.0">
+                           <children>
+                              <Label text="Nazwisko lekarza:" />
+                              <TextField prefHeight="25.0" prefWidth="220.0" />
+                           </children>
+                        </HBox>
+                        <HBox layoutX="432.0" layoutY="34.0" prefHeight="41.0" prefWidth="350.0">
+                           <children>
+                              <Label text="Data:" />
+                              <TextField alignment="TOP_LEFT" prefHeight="25.0" prefWidth="220.0">
+                                 <HBox.margin>
+                                    <Insets left="80.0" />
+                                 </HBox.margin>
+                                 <opaqueInsets>
+                                    <Insets />
+                                 </opaqueInsets>
+                              </TextField>
+                           </children>
+                        </HBox>
+                        <HBox layoutX="432.0" layoutY="206.0" prefHeight="48.0" prefWidth="350.0">
+                           <children>
+                              <Label text="Pesel lekarza" />
+                              <TextField prefHeight="25.0" prefWidth="220.0">
+                                 <HBox.margin>
+                                    <Insets left="33.0" />
+                                 </HBox.margin>
+                              </TextField>
+                           </children>
+                        </HBox>
+                        <HBox layoutX="447.0" layoutY="324.0" prefHeight="166.0" prefWidth="320.0">
+                           <children>
+                              <VBox prefHeight="166.0" prefWidth="160.0">
+                                 <children>
+                                    <Button alignment="BOTTOM_CENTER" contentDisplay="TOP" mnemonicParsing="false" prefHeight="25.0" prefWidth="110.0" text="Zapisz" textAlignment="CENTER">
+                                       <VBox.margin>
+                                          <Insets left="25.0" />
+                                       </VBox.margin>
+                                    </Button>
+                                    <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="110.0" text="Wyczyść pola" textAlignment="CENTER">
+                                       <VBox.margin>
+                                          <Insets left="25.0" top="25.0" />
+                                       </VBox.margin>
+                                    </Button>
+                                 </children>
+                              </VBox>
+                              <VBox prefHeight="200.0" prefWidth="160.0">
+                                 <children>
+                                    <Button alignment="CENTER" mnemonicParsing="false" prefWidth="110.0" text="Usuń" textAlignment="CENTER">
+                                       <VBox.margin>
+                                          <Insets left="25.0" />
+                                       </VBox.margin>
+                                    </Button>
+                                    <Button alignment="CENTER" mnemonicParsing="false" prefWidth="110.0" text="Dodaj nowy" textAlignment="CENTER">
+                                       <VBox.margin>
+                                          <Insets left="25.0" top="25.0" />
+                                       </VBox.margin>
+                                    </Button>
+                                 </children>
+                              </VBox>
+                           </children>
+                        </HBox>
+                     </children>
+                  </AnchorPane>
+            </content>
+          </Tab>
+            <Tab text="Rezerwacje">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <TableView fx:id="rejestracjePacjentaTabela" prefHeight="515.0" prefWidth="381.0">
+                          <columns>
+                            <TableColumn fx:id="numerRejestracjiPacj" prefWidth="115.0" text="Id oddziału" />
+                              <TableColumn fx:id="rejestracjeDataOd" prefWidth="127.0" text="Data od" />
+                              <TableColumn fx:id="RejestracjeDataDo" prefWidth="134.0" text="Data do" />
+                          </columns>
+                        </TableView>
+                         <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="484.0" layoutX="408.0" layoutY="14.0" stroke="BLACK" strokeType="INSIDE" width="389.0" />
+                        <HBox layoutX="432.0" layoutY="88.0" prefHeight="58.0" prefWidth="350.0">
+                           <children>
+                              <Label text="Data od:" />
+                              <TextField prefHeight="25.0" prefWidth="220.0">
+                                 <opaqueInsets>
+                                    <Insets />
+                                 </opaqueInsets>
+                                 <HBox.margin>
+                                    <Insets left="44.0" />
+                                 </HBox.margin>
+                              </TextField>
+                           </children>
+                        </HBox>
+                        <HBox layoutX="432.0" layoutY="146.0" prefHeight="44.0" prefWidth="350.0">
+                           <children>
+                              <Label text="Data do:" />
+                              <TextField prefHeight="25.0" prefWidth="220.0">
+                                 <HBox.margin>
+                                    <Insets left="44.0" />
+                                 </HBox.margin></TextField>
+                           </children>
+                        </HBox>
+                        <HBox layoutX="432.0" layoutY="34.0" prefHeight="41.0" prefWidth="350.0">
+                           <children>
+                              <Label prefHeight="15.0" prefWidth="70.0" text="Oddział:" />
+                              <TextField alignment="TOP_LEFT" prefHeight="25.0" prefWidth="220.0">
+                                 <HBox.margin>
+                                    <Insets left="30.0" />
+                                 </HBox.margin>
+                                 <opaqueInsets>
+                                    <Insets />
+                                 </opaqueInsets>
+                              </TextField>
+                           </children>
+                        </HBox>
+                        <HBox layoutX="447.0" layoutY="324.0" prefHeight="166.0" prefWidth="320.0">
+                           <children>
+                              <VBox prefHeight="166.0" prefWidth="160.0">
+                                 <children>
+                                    <Button alignment="BOTTOM_CENTER" contentDisplay="TOP" mnemonicParsing="false" prefHeight="25.0" prefWidth="110.0" text="Zapisz" textAlignment="CENTER">
+                                       <VBox.margin>
+                                          <Insets left="25.0" />
+                                       </VBox.margin>
+                                    </Button>
+                                    <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="110.0" text="Wyczyść pola" textAlignment="CENTER">
+                                       <VBox.margin>
+                                          <Insets left="25.0" top="25.0" />
+                                       </VBox.margin>
+                                    </Button>
+                                 </children>
+                              </VBox>
+                              <VBox prefHeight="200.0" prefWidth="160.0">
+                                 <children>
+                                    <Button alignment="CENTER" mnemonicParsing="false" prefWidth="110.0" text="Usuń" textAlignment="CENTER">
+                                       <VBox.margin>
+                                          <Insets left="25.0" />
+                                       </VBox.margin>
+                                    </Button>
+                                    <Button alignment="CENTER" mnemonicParsing="false" prefWidth="110.0" text="Dodaj nowy" textAlignment="CENTER">
+                                       <VBox.margin>
+                                          <Insets left="25.0" top="25.0" />
+                                       </VBox.margin>
+                                    </Button>
+                                 </children>
+                              </VBox>
+                           </children>
+                        </HBox>
+                        <HBox layoutX="432.0" layoutY="196.0" prefHeight="44.0" prefWidth="350.0">
+                           <children>
+                              <Label text="Czy przyjęty " />
+                              <CheckBox mnemonicParsing="false">
+                                 <HBox.margin>
+                                    <Insets left="15.0" />
+                                 </HBox.margin>
+                              </CheckBox>
+                           </children>
+                        </HBox>
+                     </children>
+                  </AnchorPane>
+              </content>
+            </Tab>
+            <Tab text="Untitled Tab">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+              </content>
+            </Tab>
+        </tabs>
+      </TabPane>
+      <Label layoutX="303.0" layoutY="7.0" prefHeight="15.0" prefWidth="223.0" text="Szczegóły pacjenta" />
+   </children>
+</AnchorPane>
