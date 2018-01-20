@@ -1,9 +1,17 @@
 package controllers;
 
+import java.io.IOException;
+
 import database.DaoRejestracja;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.stage.Stage;
 import model.Pacjent;
 import model.Rejestracja;
 
@@ -77,6 +85,27 @@ public class SzczegolyPacjentaController {
 	public void setClickedPacjent(Pacjent clickedPacjent) {
 		this.clickedPacjent = clickedPacjent;
 	}
+	
+	@FXML
+    void goBackHomePage(ActionEvent event) throws IOException {
+    	Parent mainViewParent = FXMLLoader.load(getClass().getResource("/MainWindow.fxml"));
+    	Scene mainViewScene = new Scene(mainViewParent);
+    	Stage window =  (Stage) ((Node)event.getSource()).getScene().getWindow();
+    	
+    	window.setScene(mainViewScene);
+    	window.show();
+    }
+	
+	@FXML
+    void goBackListaPacjentow(ActionEvent event) throws IOException {
+		Parent patientsViewParent = FXMLLoader.load(getClass().getResource("/PacjentWindow.fxml"));
+    	Scene patientsViewScene = new Scene(patientsViewParent);
+    	Stage window =  (Stage) ((Node)event.getSource()).getScene().getWindow();
+    	
+    	window.setScene(patientsViewScene);
+    	window.show();
+    }
+	
     
  
 }

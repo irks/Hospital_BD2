@@ -9,7 +9,7 @@ import model.Pacjent;
 
 public class DaoPacjent {
 
-	public static Pacjent searchEmployee (String pacjId) throws Exception {
+	public static Pacjent searchPacjent (long pacjId) throws Exception {
         //Declare a SELECT statement
         String selectStmt = "SELECT * FROM pacjent WHERE id="+pacjId;
  
@@ -83,12 +83,12 @@ public class DaoPacjent {
         return pacjList;
     }
  
-    public static void updateSurname (String pacjId, String surname) throws Exception {
+    public static boolean updatePacjent (long pacjId, String name, String lastName, long pesel ) throws Exception {
         //Declare a UPDATE statement
         String updateStmt =
                 "BEGIN\n" +
                         "   UPDATE pacjent\n" +
-                        "      SET SURNAME = '" + surname + "'\n" +
+                        "      SET SURNAME = '" + lastName + "', NAME = '"+ name + "', PESEL = '" + pesel + "'\n" +
                         "    WHERE ID = " + pacjId + ";\n" +
                         "   COMMIT;\n" +
                         "END;";
@@ -100,9 +100,10 @@ public class DaoPacjent {
             System.out.print("Error occurred while UPDATE Operation: " + e);
             throw e;
         }
+        return true;
     }
  
-    public static void deletePacjWithId (String pacjId) throws Exception {
+    public static boolean deletePacjWithId (Long pacjId) throws Exception {
         //Declare a DELETE statement
         String updateStmt =
                 "BEGIN\n" +
@@ -118,6 +119,8 @@ public class DaoPacjent {
             System.out.print("Error occurred while DELETE Operation: " + e);
             throw e;
         }
+        
+        return true;
     }
  
     public static void insertPacjent (String name, String lastname, long pesel) throws Exception {
@@ -127,9 +130,8 @@ public class DaoPacjent {
                         "INSERT INTO pacjent\n" +
                         "(NAME, SURNAME, PESEL)\n" +
                         "VALUES\n" +
-                        "("+name+"', '"+lastname+"','"+pesel+"', SYSDATE, 'IT_PROG');\n" +
+                        "('"+name+"', '"+lastname+"','"+pesel+"');\n" +
                         "END;";
- 
         //Execute DELETE operation
         try {
             DAOManager.dbExecuteUpdate(updateStmt);

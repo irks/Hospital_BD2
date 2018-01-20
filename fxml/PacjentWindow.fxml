@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.text.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import java.lang.*?>
@@ -7,10 +8,6 @@
 <?import javafx.scene.layout.AnchorPane?>
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="614.0" prefWidth="890.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.PacjentWindowController">
-   <top>
-		
-      <Label text="Lista pacjentów" BorderPane.alignment="CENTER" />
-   </top>
    <left>
       <TableView id="pacjenciTabela" fx:id="pacjenciTabela" onMouseClicked="#onMouseClickedPacjent" prefHeight="599.0" prefWidth="465.0" BorderPane.alignment="CENTER">
         <columns>
@@ -29,7 +26,7 @@
             <HBox layoutX="56.0" layoutY="29.0" prefHeight="100.0" prefWidth="340.0">
                <children>
                   <Label text="Imię:" />
-                  <TextField prefHeight="25.0" prefWidth="250.0">
+                  <TextField fx:id="textFieldImie" prefHeight="25.0" prefWidth="250.0">
                      <HBox.margin>
                         <Insets left="35.0" />
                      </HBox.margin>
@@ -39,7 +36,7 @@
             <HBox layoutX="56.0" layoutY="99.0" prefHeight="100.0" prefWidth="340.0">
                <children>
                   <Label text="Nazwisko:" />
-                  <TextField prefHeight="25.0" prefWidth="250.0">
+                  <TextField fx:id="textFieldNazwisko" prefHeight="25.0" prefWidth="250.0">
                      <HBox.margin>
                         <Insets left="2.0" />
                      </HBox.margin>
@@ -49,7 +46,7 @@
             <HBox layoutX="56.0" layoutY="172.0" prefHeight="100.0" prefWidth="340.0">
                <children>
                   <Label text="Pesel" />
-                  <TextField prefWidth="250.0">
+                  <TextField fx:id="textFieldPesel" prefWidth="250.0">
                      <HBox.margin>
                         <Insets left="33.0" />
                      </HBox.margin>
@@ -60,12 +57,12 @@
                <children>
                   <VBox prefHeight="200.0" prefWidth="170.0">
                      <children>
-                        <Button mnemonicParsing="false" prefWidth="110.0" text="Zapisz">
+                        <Button mnemonicParsing="false" onAction="#onActionButtonSave" prefWidth="110.0" text="Zapisz">
                            <VBox.margin>
                               <Insets bottom="25.0" left="30.0" />
                            </VBox.margin>
                         </Button>
-                        <Button mnemonicParsing="false" prefWidth="110.0" text="Wyczyść pola">
+                        <Button mnemonicParsing="false" onAction="#onActionButtonClear" prefWidth="110.0" text="Wyczyść pola">
                            <VBox.margin>
                               <Insets left="30.0" />
                            </VBox.margin>
@@ -74,12 +71,12 @@
                   </VBox>
                   <VBox prefHeight="200.0" prefWidth="170.0">
                      <children>
-                        <Button mnemonicParsing="false" prefWidth="110.0" text="Usuń">
+                        <Button mnemonicParsing="false" onAction="#onActionButtonDelete" prefWidth="110.0" text="Usuń">
                            <VBox.margin>
                               <Insets bottom="25.0" left="30.0" />
                            </VBox.margin>
                         </Button>
-                        <Button mnemonicParsing="false" prefWidth="110.0" text="Dodaj">
+                        <Button mnemonicParsing="false" onAction="#onActionButtonNew" prefWidth="110.0" text="Dodaj">
                            <VBox.margin>
                               <Insets left="30.0" />
                            </VBox.margin>
@@ -91,4 +88,23 @@
          </children></Pane>
 
    </right>
+   <top>
+      <HBox prefHeight="37.0" prefWidth="890.0" BorderPane.alignment="CENTER">
+         <children>
+            <Button mnemonicParsing="false" onAction="#goBackHomePage" text="Wróć do strony głównej">
+               <HBox.margin>
+                  <Insets left="5.0" top="5.0" />
+               </HBox.margin>
+            </Button>
+            <Label alignment="CENTER" text="Lista pacjentów">
+               <HBox.margin>
+                  <Insets left="220.0" top="5.0" />
+               </HBox.margin>
+               <font>
+                  <Font size="19.0" />
+               </font>
+            </Label>
+         </children>
+      </HBox>
+   </top>
 </BorderPane>

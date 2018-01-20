@@ -3,6 +3,7 @@ package controllers;
 import java.io.IOException;
 import java.sql.SQLException;
 
+import database.DAOManager;
 import database.DaoPacjent;
 import database.DaoRejestracja;
 import javafx.collections.ObservableList;
@@ -14,6 +15,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
@@ -33,6 +35,15 @@ public class PacjentWindowController {
     
     @FXML
     private TableView<Rejestracja> rejestracjePacjentaTabela;
+    
+    @FXML
+    private TextField textFieldPesel;
+
+    @FXML
+    private TextField textFieldImie;
+
+    @FXML
+    private TextField textFieldNazwisko;
     
 //    idOddzialuRej
 //    nazwaOddzialuRej
@@ -97,29 +108,43 @@ public class PacjentWindowController {
     
     @FXML
     void onMouseClickedPacjent(MouseEvent event) throws Exception {
-    
-    	if (event.getClickCount() == 2 &&  event.getButton()==MouseButton.PRIMARY) {	
+    	if (event.getClickCount() == 1 &&  event.getButton()==MouseButton.PRIMARY) {	
     		Pacjent clickedPacjent = pacjenciTabela.getSelectionModel().getSelectedItem();
-    		
-    		FXMLLoader fxmlloader = new FXMLLoader();
-    		Parent patientViewParent = fxmlloader.load(getClass().getResource("/SzczegolyPacjentaWindow.fxml").openStream());
-    		SzczegolyPacjentaController controller = fxmlloader.getController();
-    		controller.setClickedPacjent(clickedPacjent);
-        	Scene patientViewScene = new Scene(patientViewParent);
-        	Stage window =  (Stage) ((Node)event.getSource()).getScene().getWindow();
-        	
-        	window.setScene(patientViewScene);
-        	controller.start();
-        	window.show();
-        	
-//        	fillPacjentData(clickedPacjent);
-        	
-//    		textFieldName.setText(patient.getName().get());
-//    		textFieldSurname.setText(patient.getSurname().get());
-//    		textFieldPesel.setText(String.valueOf(patient.getPesel().get()));
-//    		textFieldDoctor.setText(String.valueOf(patient.getDoctor().get()));
-//    		textFieldDepartment.setText(String.valueOf(patient.getDepartment().get()));
+    		if(clickedPacjent != null) {
+    			
+				textFieldImie.setText(clickedPacjent.getName().get());
+				textFieldNazwisko.setText(clickedPacjent.getSurname().get());
+				textFieldPesel.setText(String.valueOf(clickedPacjent.getPesel().get()));
+			}
     	}
+    	
+    	
+    
+		if (event.getClickCount() == 2 && event.getButton() == MouseButton.PRIMARY) {
+			Pacjent clickedPacjent = pacjenciTabela.getSelectionModel().getSelectedItem();
+			if (clickedPacjent != null) {
+
+				FXMLLoader fxmlloader = new FXMLLoader();
+				Parent patientViewParent = fxmlloader
+						.load(getClass().getResource("/SzczegolyPacjentaWindow.fxml").openStream());
+				SzczegolyPacjentaController controller = fxmlloader.getController();
+				controller.setClickedPacjent(clickedPacjent);
+				Scene patientViewScene = new Scene(patientViewParent);
+				Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+				window.setScene(patientViewScene);
+				controller.start();
+				window.show();
+
+				// fillPacjentData(clickedPacjent);
+
+				// textFieldName.setText(patient.getName().get());
+				// textFieldSurname.setText(patient.getSurname().get());
+				// textFieldPesel.setText(String.valueOf(patient.getPesel().get()));
+				// textFieldDoctor.setText(String.valueOf(patient.getDoctor().get()));
+				// textFieldDepartment.setText(String.valueOf(patient.getDepartment().get()));
+			}
+		}
     }
     
     
@@ -194,4 +219,55 @@ public class PacjentWindowController {
 //            throw e;
 //        }
 //    }
+    @FXML
+    void onActionButtonSave(ActionEvent event) throws Exception {
+    	String imie= textFieldImie.getText();
+    	String nazwisko= textFieldNazwisko.getText();
+    	long pesel= Long.valueOf(textFieldPesel.getText());
+    	if(DaoPacjent.updatePacjent(pacjenciTabela.getSelectionModel().getSelectedItem().getPacjent_id().longValue(), imie, nazwisko, pesel));
+    	{
+    		Pacjent pacjent = DaoPacjent.searchPacjent(pacjenciTabela.getSelectionModel().getSelectedItem().getPacjent_id().longValue());
+    		int selectedIdx = pacjenciTabela.getSelectionModel().getSelectedIndex();
+        	pacjenciTabela.getItems().set(selectedIdx, pacjent);
+    	}
+    }
+
+    @FXML
+    void onActionButtonDelete(ActionEvent event) throws Exception {
+    	if(DaoPacjent.deletePacjWithId(Long.valueOf(this.pacjenciTabela.getSelectionModel().getSelectedItem().getPesel().get())))
+    	{
+    		int selectedIdx = pacjenciTabela.getSelectionModel().getSelectedIndex();
+    		pacjenciTabela.getItems().remove(selectedIdx);
+    		textFieldImie.setText("");
+    		textFieldNazwisko.setText("");
+    		textFieldPesel.setText("");
+    	}
+    }
+    @FXML
+    void onActionButtonNew(ActionEvent event) throws Exception {
+    	String imie= textFieldImie.getText();
+    	String nazwisko= textFieldNazwisko.getText();
+    	long pesel= Long.valueOf(textFieldPesel.getText());
+    	DaoPacjent.insertPacjent(imie,  nazwisko,  pesel);
+    	this.pacjenciTabela.setItems(DaoPacjent.searchPacjencis());
+        pacjentImieKolumna.setCellValueFactory(cellData -> cellData.getValue().getName());
+        pacjentNazwiskoKolumna.setCellValueFactory(cellData -> cellData.getValue().getSurname());
+        pacjentPeselKolumna.setCellValueFactory(cellData -> cellData.getValue().getPesel().asObject());
+    }
+    @FXML
+    void onActionButtonClear(ActionEvent event) {
+    	textFieldImie.setText("");
+		textFieldNazwisko.setText("");
+		textFieldPesel.setText("");
+    }
+    
+    @FXML
+    void goBackHomePage(ActionEvent event) throws IOException {
+    	Parent mainViewParent = FXMLLoader.load(getClass().getResource("/MainWindow.fxml"));
+    	Scene mainViewScene = new Scene(mainViewParent);
+    	Stage window =  (Stage) ((Node)event.getSource()).getScene().getWindow();
+    	
+    	window.setScene(mainViewScene);
+    	window.show();
+    }
 }
