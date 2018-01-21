@@ -16,8 +16,8 @@ public class DaoOddzial {
  
         while (rs.next()) {
         	long id = rs.getLong("ID");
-        	String nazwa = rs.getString("NAME");
-        	Integer liczbaLozek = rs.getInt("LICZBA_LOZEK");
+        	String nazwa = rs.getString("NAZWA");
+        	Integer liczbaLozek = rs.getInt("ILOSC_LOZEK");
         	Oddzial oddzial = new Oddzial(id, nazwa, liczbaLozek);
             //Add employee to the ObservableList
         	oddzialList.add(oddzial);

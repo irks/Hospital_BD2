@@ -1,6 +1,7 @@
 package database;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
@@ -41,7 +42,7 @@ public class DaoRejestracja {
         	long id = rs.getLong("ID");
         	String dataOd = rs.getString("DATA_OD");
         	String dataDo = rs.getString("DATA_DO");
-        	long czyPrzyjety = rs.getLong("CZY_PRZYJETY");
+        	long czyPrzyjety = rs.getLong("CZY_PRZYJETY(bool)");
         	rejestracja = new Rejestracja(id, dataOd, dataDo, czyPrzyjety);
         }
         return rejestracja;
@@ -86,9 +87,9 @@ public class DaoRejestracja {
         return rejestrList;
     }
     
-    public static ObservableList<Rejestracja> searchRejestracjePacjenta (LongProperty longProperty) throws Exception {
+    public static ObservableList<Rejestracja> searchRejestracjePacjenta (LongProperty longProperty, boolean czyPrzyjety) throws Exception {
         //Declare a SELECT statement
-        String selectStmt = "SELECT * FROM rejestracja WHERE ID1 = "+ longProperty.longValue();
+        String selectStmt = "SELECT * FROM rejestracja WHERE ID1 = "+ longProperty.longValue() + " and CZY_PRZYJETY = " + (czyPrzyjety ? 1 : 0);
  
         //Execute SELECT statement
         try {
@@ -105,6 +106,65 @@ public class DaoRejestracja {
             //Return exception
             throw e;
         }
+    }
+    
+    public static boolean updateRejestracja (long rejestracjaId, Date dataOd, Date dataDo, boolean czyPrzyjety ) throws Exception {
+        //Declare a UPDATE statement
+        String updateStmt =
+                "BEGIN\n" +
+                        "   UPDATE rejestracja\n" +
+                        "      SET START_DATE = '" + dataOd + "', END_DATE = '"+ dataDo + "', CZY_PRZYJETY= '" + (czyPrzyjety ? 1 : 0) + "'\n" +
+                        "    WHERE ID = " + rejestracjaId + ";\n" +
+                        "   COMMIT;\n" +
+                        "END;";
+ 
+        //Execute UPDATE operation
+        try {
+            DAOManager.dbExecuteUpdate(updateStmt);
+        } catch (SQLException e) {
+            System.out.print("Error occurred while UPDATE Operation: " + e);
+            throw e;
+        }
+        return true;
+    }
+    
+
+    public static void insertRejestracja (Date dataOd, Date dataDo, boolean czyPrzyjety ) throws Exception {
+        //Declare a DELETE statement
+        String updateStmt =
+                "BEGIN\n" +
+                        "INSERT INTO rejestracja\n" +
+                        "(START_DATE, END_DATE, CZY_PRZYJETY)\n" +
+                        "VALUES\n" +
+                        "('"+dataOd+"', '"+dataDo+"','"+(czyPrzyjety ? 1 : 0)+"');\n" +
+                        "END;";
+        //Execute DELETE operation
+        try {
+            DAOManager.dbExecuteUpdate(updateStmt);
+        } catch (SQLException e) {
+            System.out.print("Error occurred while INSERT Operation: " + e);
+            throw e;
+        }
+    }
+    
+    public static boolean deleteRejestracjaWithId (Long rejestrId) throws Exception {
+        //Declare a DELETE statement
+        String updateStmt =
+                "BEGIN\n" +
+                        "   DELETE FROM rejestracja\n" +
+                        "         WHERE id ="+ rejestrId +";\n" +
+                        "   COMMIT;\n" +
+                        "END;";
+ 
+        //Execute UPDATE operation
+        try {
+            DAOManager.dbExecuteUpdate(updateStmt);
+        } catch (SQLException e) {
+            System.out.print("Error occurred while DELETE Operation: " + e);
+            throw e;
+        }
+        
+        return true;
     }
     
     
