@@ -7,6 +7,7 @@ import database.DAOManager;
 import database.DaoPacjent;
 import database.DaoRejestracja;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -44,6 +45,9 @@ public class PacjentWindowController {
 
     @FXML
     private TextField textFieldNazwisko;
+    
+    @FXML
+    private TextField filtrPacjent;
     
 //    idOddzialuRej
 //    nazwaOddzialuRej
@@ -95,10 +99,47 @@ public class PacjentWindowController {
         must have an additional asObject():
         */
     	if(pacjenciTabela != null ) {
-	    	this.pacjenciTabela.setItems(DaoPacjent.searchPacjencis());
-	        pacjentImieKolumna.setCellValueFactory(cellData -> cellData.getValue().getName());
-	        pacjentNazwiskoKolumna.setCellValueFactory(cellData -> cellData.getValue().getSurname());
-	        pacjentPeselKolumna.setCellValueFactory(cellData -> cellData.getValue().getPesel().asObject());
+    		pacjentImieKolumna.setCellValueFactory(cellData -> cellData.getValue().getName());
+    		pacjentNazwiskoKolumna.setCellValueFactory(cellData -> cellData.getValue().getSurname());
+    		pacjentPeselKolumna.setCellValueFactory(cellData -> cellData.getValue().getPesel().asObject());
+    		
+    		
+    		FilteredList<Pacjent> filteredData = new FilteredList<>(DaoPacjent.searchPacjencis(), p -> true);
+    		
+    		
+    		// Set the filter Predicate whenever the filter changes.
+    		filtrPacjent.textProperty().addListener((observable, oldValue, newValue) -> {
+                filteredData.setPredicate(pacjent -> {
+                    // If filter text is empty, display all persons.
+                    if (newValue == null || newValue.isEmpty()) {
+                        return true;
+                    }
+                    // Compare first name and last name of every person with filter text.
+                    String lowerCaseFilter = newValue.toLowerCase();
+
+                    if (pacjent.getName().toString().toLowerCase().contains(lowerCaseFilter)) {
+                        return true; // Filter matches first name.
+                    } else if (pacjent.getSurname().toString().toLowerCase().contains(lowerCaseFilter)) {
+                        return true; // Filter matches last name.
+                    }
+                    else if (pacjent.getPesel().toString().contains(lowerCaseFilter)) {
+                    	return true;
+                    }
+                    return false; // Does not match.
+                });
+            });
+
+            // 3. Wrap the FilteredList in a SortedList. 
+//            SortedList<Person> sortedData = new SortedList<>(filteredData);
+
+            // 4. Bind the SortedList comparator to the TableView comparator.
+//            sortedData.comparatorProperty().bind(personTable.comparatorProperty());
+
+            // 5. Add sorted (and filtered) data to the table.
+    		
+    		
+    		
+	    	this.pacjenciTabela.setItems(filteredData);
     	}
     }
     public void start() throws Exception {

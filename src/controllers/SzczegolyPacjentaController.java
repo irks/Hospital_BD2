@@ -2,6 +2,7 @@ package controllers;
 
 import java.io.IOException;
 
+import database.DaoOddzial;
 import database.DaoRejestracja;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -9,9 +10,11 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.stage.Stage;
+import model.Oddzial;
 import model.Pacjent;
 import model.Rejestracja;
 
@@ -35,6 +38,9 @@ public class SzczegolyPacjentaController {
     private TableColumn<Rejestracja, Long>  czyPrzyjetyRej;
     
     private Pacjent clickedPacjent;
+    
+    @FXML
+    private ChoiceBox<Oddzial> oddzialPobytu;
 //    idOddzialuRej
 //    nazwaOddzialuRej
 //    czyPrzyjetyRej
@@ -75,6 +81,7 @@ public class SzczegolyPacjentaController {
 		this.czyPrzyjetyRej.setCellValueFactory(cellData->cellData.getValue().getCzyPrzyjety().asObject());
 		this.numerRejestracjiPacj.setCellValueFactory(cellData->cellData.getValue().getRejestracjaId().asObject());
     	
+		oddzialPobytu.setItems(DaoOddzial.searchOddzialy());
     }
  
  

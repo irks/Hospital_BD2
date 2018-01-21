@@ -9,7 +9,7 @@
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="614.0" prefWidth="890.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.PacjentWindowController">
    <left>
-      <TableView id="pacjenciTabela" fx:id="pacjenciTabela" onMouseClicked="#onMouseClickedPacjent" prefHeight="599.0" prefWidth="465.0" BorderPane.alignment="CENTER">
+      <TableView id="pacjenciTabela" fx:id="pacjenciTabela" maxHeight="-Infinity" onMouseClicked="#onMouseClickedPacjent" prefHeight="533.0" prefWidth="465.0" BorderPane.alignment="CENTER">
         <columns>
           <TableColumn id="pacjentImieKolumna" fx:id="pacjentImieKolumna" prefWidth="134.0" text="Imię" />
           <TableColumn id="pacjentNazwiskoKolumna" fx:id="pacjentNazwiskoKolumna" prefWidth="129.0" text="Nazwisko" />
@@ -21,7 +21,7 @@
       <Separator orientation="VERTICAL" prefHeight="574.0" prefWidth="55.0" BorderPane.alignment="TOP_LEFT" />
    </center>
    <right>
-      <Pane prefHeight="574.0" prefWidth="411.0" BorderPane.alignment="CENTER">
+      <Pane maxHeight="-Infinity" prefHeight="532.0" prefWidth="411.0" BorderPane.alignment="CENTER">
          <children>
             <HBox layoutX="56.0" layoutY="29.0" prefHeight="100.0" prefWidth="340.0">
                <children>
@@ -89,16 +89,26 @@
 
    </right>
    <top>
-      <HBox prefHeight="37.0" prefWidth="890.0" BorderPane.alignment="CENTER">
+      <HBox prefHeight="70.0" prefWidth="890.0" BorderPane.alignment="CENTER">
          <children>
             <Button mnemonicParsing="false" onAction="#goBackHomePage" text="Wróć do strony głównej">
                <HBox.margin>
                   <Insets left="5.0" top="5.0" />
                </HBox.margin>
             </Button>
+            <Label text="Filtr:">
+               <HBox.margin>
+                  <Insets left="50.0" top="35.0" />
+               </HBox.margin>
+            </Label>
+            <TextField fx:id="filtrPacjent">
+               <HBox.margin>
+                  <Insets top="35.0" />
+               </HBox.margin>
+            </TextField>
             <Label alignment="CENTER" text="Lista pacjentów">
                <HBox.margin>
-                  <Insets left="220.0" top="5.0" />
+                  <Insets left="70.0" top="5.0" />
                </HBox.margin>
                <font>
                   <Font size="19.0" />
