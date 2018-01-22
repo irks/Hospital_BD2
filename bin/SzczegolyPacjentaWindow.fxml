@@ -182,16 +182,16 @@
                      <children>
                         <TableView fx:id="rezerwacjePacjentaTabela" prefHeight="612.0" prefWidth="514.0">
                           <columns>
-                            <TableColumn fx:id="idOddzialuRezerwacjiKolumna" prefWidth="115.0" text="Id oddziału" />
+                            <TableColumn fx:id="idOddzialuRezerwacjiKolumna" prefWidth="139.0" text="Id oddziału" />
                               <TableColumn fx:id="rezerwacjaDataOdkolumna" prefWidth="127.0" text="Data od" />
-                              <TableColumn fx:id="rezerwacjaDataDoKolumna" prefWidth="134.0" text="Data do" />
+                              <TableColumn fx:id="rezerwacjaDataDoKolumna" prefWidth="202.0" text="Data do" />
                           </columns>
                         </TableView>
                          <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="484.0" layoutX="548.0" layoutY="25.0" stroke="BLACK" strokeType="INSIDE" width="389.0" />
                         <HBox layoutX="572.0" layoutY="99.0" prefHeight="58.0" prefWidth="350.0">
                            <children>
                               <Label text="Data od:" />
-                              <DatePicker prefWidth="220.0">
+                              <DatePicker fx:id="rezerwacjaDataOd" prefWidth="220.0">
                                  <HBox.margin>
                                     <Insets left="44.0" />
                                  </HBox.margin>
@@ -201,7 +201,7 @@
                         <HBox layoutX="572.0" layoutY="157.0" prefHeight="44.0" prefWidth="350.0">
                            <children>
                               <Label text="Data do:" />
-                              <DatePicker prefWidth="220.0">
+                              <DatePicker fx:id="rezerwacjaDataDo" prefWidth="220.0">
                                  <HBox.margin>
                                     <Insets left="44.0" />
                                  </HBox.margin>
@@ -222,7 +222,7 @@
                            <children>
                               <VBox prefHeight="166.0" prefWidth="160.0">
                                  <children>
-                                    <Button alignment="BOTTOM_CENTER" contentDisplay="TOP" mnemonicParsing="false" prefHeight="25.0" prefWidth="110.0" text="Zapisz" textAlignment="CENTER">
+                                    <Button alignment="BOTTOM_CENTER" contentDisplay="TOP" mnemonicParsing="false" onAction="#onActionButtonSaveRezerwacja" prefHeight="25.0" prefWidth="110.0" text="Zapisz" textAlignment="CENTER">
                                        <VBox.margin>
                                           <Insets left="25.0" />
                                        </VBox.margin>
@@ -236,12 +236,12 @@
                               </VBox>
                               <VBox prefHeight="200.0" prefWidth="160.0">
                                  <children>
-                                    <Button alignment="CENTER" mnemonicParsing="false" prefWidth="110.0" text="Usuń" textAlignment="CENTER">
+                                    <Button alignment="CENTER" mnemonicParsing="false" onAction="#onActionButtonDeleteRezerwacja" prefWidth="110.0" text="Usuń" textAlignment="CENTER">
                                        <VBox.margin>
                                           <Insets left="25.0" />
                                        </VBox.margin>
                                     </Button>
-                                    <Button alignment="CENTER" mnemonicParsing="false" prefWidth="110.0" text="Dodaj nowy" textAlignment="CENTER">
+                                    <Button alignment="CENTER" mnemonicParsing="false" onAction="#onActionButtonNewRezerwacja" prefWidth="110.0" text="Dodaj nowy" textAlignment="CENTER">
                                        <VBox.margin>
                                           <Insets left="25.0" top="25.0" />
                                        </VBox.margin>
@@ -253,7 +253,7 @@
                         <HBox layoutX="572.0" layoutY="207.0" prefHeight="44.0" prefWidth="350.0">
                            <children>
                               <Label text="Czy przyjęty " />
-                              <CheckBox mnemonicParsing="false">
+                              <CheckBox fx:id="rezerwacjaCzyPrzyjetyChbx" mnemonicParsing="false">
                                  <HBox.margin>
                                     <Insets left="15.0" />
                                  </HBox.margin>

@@ -26,7 +26,6 @@ import model.Pacjent;
 import model.Rejestracja;
 
 public class PacjentWindowController {
-//    private TableColumn<Pacjent, Integer>  empIdColumn;
 	@FXML
     private TableView<Pacjent> pacjenciTabela;
     @FXML
@@ -57,16 +56,6 @@ public class PacjentWindowController {
     //This method is automatically called after the fxml file has been loaded.
     @FXML
     private void initialize () throws Exception {
-        /*
-        The setCellValueFactory(...) that we set on the table columns are used to determine
-        which field inside the Pacjent objects should be used for the particular column.
-        The arrow -> indicates that we're using a Java 8 feature called Lambdas.
-        (Another option would be to use a PropertyValueFactory, but this is not type-safe
- 
-        We're only using StringProperty values for our table columns in this example.
-        When you want to use IntegerProperty or DoubleProperty, the setCellValueFactory(...)
-        must have an additional asObject():
-        */
     	if(pacjenciTabela != null ) {
     		pacjentImieKolumna.setCellValueFactory(cellData -> cellData.getValue().getName());
     		pacjentNazwiskoKolumna.setCellValueFactory(cellData -> cellData.getValue().getSurname());
@@ -152,7 +141,6 @@ public class PacjentWindowController {
  
     @FXML
     private void populatePacjencis (ObservableList<Pacjent> empData) throws ClassNotFoundException {
-        //Set items to the employeeTable
     	pacjenciTabela.setItems(empData);
     }
  
@@ -236,4 +224,10 @@ public class PacjentWindowController {
     	window.setScene(mainViewScene);
     	window.show();
     }
+    
+    
+   
+    
+    
+    
 }

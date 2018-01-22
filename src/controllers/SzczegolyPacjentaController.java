@@ -19,6 +19,8 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.input.MouseButton;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import javafx.util.StringConverter;
 import model.Konsultacja;
@@ -93,6 +95,10 @@ public class SzczegolyPacjentaController {
     
     @FXML
     private DatePicker dataDoPobyt;
+    @FXML
+    private DatePicker rezerwacjaDataDo;
+    @FXML
+    private DatePicker rezerwacjaDataOd;
  
     //Initializing the controller class.
     //This method is automatically called after the fxml file has been loaded.
@@ -137,9 +143,24 @@ public class SzczegolyPacjentaController {
 	    });
 		
 		rezerwacjePacjentaTabela.setItems(DaoRejestracja.searchRejestracjePacjenta(pacjent.getPacjent_id(), false));
-		this.idOddzialuRezerwacjiKolumna.setCellValueFactory(cellData->cellData.getValue().getIdOddzialu().asObject());
-		this.rezerwacjaDataDoKolumna.setCellValueFactory(cellData->(new SimpleStringProperty(cellData.getValue().getDataDo(),toString())));
-		this.rezerwacjaDataOdkolumna.setCellValueFactory(cellData->(new SimpleStringProperty(cellData.getValue().getDataOd().toString())));
+		rezerwacjaDataOdkolumna.setCellValueFactory(cellData -> (new SimpleStringProperty(cellData.getValue().getDataOd().toString())));
+	    rezerwacjaDataDoKolumna.setCellValueFactory(cellData -> (new SimpleStringProperty(cellData.getValue().getDataDo().toString())));
+	    idOddzialuRezerwacjiKolumna.setCellValueFactory(cellData -> cellData.getValue().getIdOddzialu().asObject());
+		
+		rezerwacjeOddzial.setItems(DaoOddzial.searchOddzialy());
+		rezerwacjeOddzial.setConverter(new StringConverter<Oddzial>() {
+
+	        @Override
+	        public String toString(Oddzial object) {
+	            return object.getNazwa().get();
+	        }
+
+	        @Override
+	        public Oddzial fromString(String string) {
+	            return oddzialPobytu.getItems().stream().filter(ap -> 
+	                ap.getNazwa().equals(string)).findFirst().orElse(null);
+	        }
+	    });
 		
     }
  
@@ -215,6 +236,50 @@ public class SzczegolyPacjentaController {
     	dataDoPobyt.setValue(null);
 		oddzialPobytu.setValue(null);
     }
+    
+    @FXML
+    void onActionButtonSaveRezerwacja(ActionEvent event) {
+
+    }
+
+    @FXML
+    void onActionButtonDeleteRezerwacja(ActionEvent event) {
+
+    }
+
+    @FXML
+    void onActionButtonNewRezerwacja(ActionEvent event) throws Exception {
+    	Date dataOd= Date.valueOf(rezerwacjaDataOd.getValue());
+    	Date dataDo = Date.valueOf(rezerwacjaDataDo.getValue());
+    	long idOddzialu = rezerwacjeOddzial.getValue().getOddzialId().get();
+    	
+    	DaoRejestracja.insertRejestracja(dataOd, dataDo, false, clickedPacjent.getPacjent_id().get(), idOddzialu);
+    	this.rezerwacjePacjentaTabela.setItems(DaoRejestracja.searchRejestracjePacjenta(clickedPacjent.getPacjent_id(), false));
+    	
+        rezerwacjaDataOdkolumna.setCellValueFactory(cellData -> (new SimpleStringProperty(cellData.getValue().getDataOd().toString())));
+        rezerwacjaDataDoKolumna.setCellValueFactory(cellData -> (new SimpleStringProperty(cellData.getValue().getDataDo().toString())));
+        idOddzialuRezerwacjiKolumna.setCellValueFactory(cellData -> cellData.getValue().getIdOddzialu().asObject());
+    }
+
+    
+    
+ 
+    
+    
+    
+    @FXML
+    void onMouseClickedRezerwacja(MouseEvent event) throws Exception {
+//    	if (event.getClickCount() == 1 &&  event.getButton()==MouseButton.PRIMARY) {	
+//    		Rejestracja clickedRezerwacja = rezerwacjePacjentaTabela.getSelectionModel().getSelectedItem();
+//    		if(clickedRezerwacja != null) {
+//    			
+//				rezerwacjaDataOd.setValue(clickedRezerwacja.getDataOd().toLocalDate());
+//				rezerwacjaDataDo.setValue(clickedRezerwacja.getDataDo().toLocalDate());
+//				rezerwacjeOddzial.setValue();
+//			}
+//    	}
+    }
+    
     
  
 }
