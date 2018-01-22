@@ -1,0 +1,25 @@
+SELECT p.*, zb.*
+FROM 
+	PACJENT p
+	INNER JOIN (
+    SELECT z.*, sbd.NAME as nazwa_badania
+    FROM 
+	ZLECENIE z 
+	INNER JOIN SLOWNIK_ZLECENIA szl ON z.ID1 = szl.ID
+
+	INNER JOIN ZLC_SKL_Z zsz ON zsz.ID1 = szl.ID
+
+	INNER JOIN SL_BADANIA sbd ON zsz.ID = sbd.ID
+    )zb ON zb.ID2 = p.ID
+    INNER JOIN LEK_OPIEKUJE_SIE_PAC losp ON losp.ID1 = p.ID
+    INNER JOIN
+    (
+    SELECT pr.*
+    FROM PRACOWNIK pr 
+        INNER JOIN LEKARZ l ON l.ID = pr.ID
+    WHERE pr.PRACOWNIK_TYPE = 'LEKARZ'
+    ) pr ON pr.ID = losp.ID2
+    WHERE pr.ID = 1;
+
+
+Pacjentów wraz z badaniami dla lekarza o danym ID.

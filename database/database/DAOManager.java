@@ -21,8 +21,11 @@ public class DAOManager {
     //String connStr = "jdbc:oracle:thin:Username/Password@IP:Port/SID";
     //Username=iwrobel, Password=iwrobel, IP=ora3.elka.pw.edu.pl, IP=1521, SID=ora3inf
     private static final String connStr = "jdbc:oracle:thin:@ora3.elka.pw.edu.pl:1521:ora3inf";
+//    private static final String connStr = "jdbc:oracle:thin:@localhost:1521:xe";
     private static final String PASSWORD= "iwrobel"; 
 	private static final String USER= "iwrobel";
+//    private static final String PASSWORD= "BD2"; 
+//	private static final String USER= "BD2";
  
  
     //Connect to DB

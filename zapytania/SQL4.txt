@@ -1,0 +1,20 @@
+SELECT p.*, pr."ID" as "ID lekarza konsultanta", o.NAZWA as "nazwa oddzialu"
+FROM
+	PACJENT p
+	INNER JOIN REJESTRACJA r ON p.ID = r.ID1
+
+	INNER JOIN ODDZIAL o ON o.ID = r.ID
+
+	INNER JOIN KONSULTACJA k ON k.ID1 = p.ID
+
+	INNER JOIN (
+	SELECT p.*
+	FROM
+	PRACOWNIK p 
+	INNER JOIN LEKARZ l ON l.ID = p.ID
+	WHERE p.PRACOWNIK_TYPE = 'LEKARZ'
+	) pr ON pr.ID = k.ID2
+
+WHERE k."DATE" >= r.START_DATE AND k."DATE" <= r.END_DATE; 
+
+Pacjêci wraz z konsultantami i nazwami oddzia³ow

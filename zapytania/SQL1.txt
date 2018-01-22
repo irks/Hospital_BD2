@@ -1,0 +1,22 @@
+SELECT p.*, zb.*
+FROM 
+	PACJENT p
+	INNER JOIN (
+    SELECT z.*, sbd.NAME as nazwa_badania
+    FROM 
+	ZLECENIE z 
+	INNER JOIN SLOWNIK_ZLECENIA szl ON z.ID1 = szl.ID
+
+	INNER JOIN ZLC_SKL_Z zsz ON zsz.ID1 = szl.ID
+
+	INNER JOIN SL_BADANIA sbd ON zsz.ID = sbd.ID
+
+	INNER JOIN  BADANIE_SKL_Z bsz ON bsz.ID = sbd.ID
+
+	INNER JOIN  SL_TESTY st ON bsz.ID1 = st.ID
+
+	INNER JOIN RESULT_RANGE rr ON rr.ID = st.ID
+    WHERE z.RESULT_NUMBER < rr.RESULT_FROM OR z.RESULT_NUMBER > rr.RESULT_TO
+    )zb ON zb.ID2 = p.ID;
+
+Wszystkich pacjentów z badaniami o wyniku negatywnym.

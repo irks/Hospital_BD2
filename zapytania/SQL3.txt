@@ -1,0 +1,20 @@
+SELECT pr.ID as "ID pracownika", p.*
+FROM
+	PACJENT p
+	INNER JOIN LEK_OPIEKUJE_SIE_PAC losp ON p.ID = losp.ID1
+
+	INNER JOIN (
+	SELECT p.*
+	FROM
+	PRACOWNIK p 
+	INNER JOIN LEKARZ l ON l.ID = p.ID
+	WHERE p.PRACOWNIK_TYPE = 'LEKARZ'
+	) pr ON pr.ID = losp.ID2
+
+	INNER JOIN PRACUJE_W pw ON pw.ID1 = pr.ID
+
+	INNER JOIN ODDZIAL o ON pw.ID = o.ID
+
+WHERE o.ID = 1;
+
+Pacjentów wraz  z lekarzami dla danego oddzialu
