@@ -8,23 +8,23 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="611.0" prefWidth="859.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.SzczegolyPacjentaController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.SzczegolyPacjentaController">
    <children>
-      <TabPane layoutX="14.0" layoutY="46.0" prefHeight="532.0" prefWidth="814.0" tabClosingPolicy="UNAVAILABLE">
+      <TabPane layoutX="14.0" layoutY="46.0" prefHeight="651.0" prefWidth="981.0" tabClosingPolicy="UNAVAILABLE">
         <tabs>
           <Tab text="Pobyty w szpitalu">
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <TableView fx:id="pobytyTabela" prefHeight="514.0" prefWidth="405.0">
+                        <TableView fx:id="pobytyTabela" prefHeight="611.0" prefWidth="507.0">
                           <columns>
-                            <TableColumn fx:id="idOddzialuPobytKolumna" prefWidth="134.0" text="Id oddziału" />
-                            <TableColumn fx:id="dataOdPobytuKolumna" prefWidth="105.0" text="Data od" />
-                              <TableColumn fx:id="dataDoPobytuKolumna" prefWidth="109.0" text="Data do" />
+                            <TableColumn fx:id="idOddzialuPobytKolumna" prefWidth="154.0" text="Id oddziału" />
+                            <TableColumn fx:id="dataOdPobytuKolumna" prefWidth="160.0" text="Data od" />
+                              <TableColumn fx:id="dataDoPobytuKolumna" prefWidth="181.0" text="Data do" />
                           </columns>
                         </TableView>
-                         <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="484.0" layoutX="408.0" layoutY="14.0" stroke="BLACK" strokeType="INSIDE" width="389.0" />
-                        <HBox layoutX="432.0" layoutY="88.0" prefHeight="58.0" prefWidth="350.0">
+                         <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="484.0" layoutX="548.0" layoutY="21.0" stroke="BLACK" strokeType="INSIDE" width="389.0" />
+                        <HBox layoutX="572.0" layoutY="95.0" prefHeight="58.0" prefWidth="350.0">
                            <children>
                               <Label text="Data od:" />
                               <DatePicker fx:id="dataOdPobyt" prefWidth="220.0">
@@ -34,7 +34,7 @@
                               </DatePicker>
                            </children>
                         </HBox>
-                        <HBox layoutX="432.0" layoutY="146.0" prefHeight="44.0" prefWidth="350.0">
+                        <HBox layoutX="572.0" layoutY="153.0" prefHeight="44.0" prefWidth="350.0">
                            <children>
                               <Label text="Data do:" />
                               <DatePicker fx:id="dataDoPobyt" prefWidth="220.0">
@@ -44,7 +44,7 @@
                               </DatePicker>
                            </children>
                         </HBox>
-                        <HBox layoutX="432.0" layoutY="34.0" prefHeight="41.0" prefWidth="350.0">
+                        <HBox layoutX="572.0" layoutY="41.0" prefHeight="41.0" prefWidth="350.0">
                            <children>
                               <Label prefHeight="15.0" prefWidth="70.0" text="Oddział:" />
                               <ChoiceBox fx:id="oddzialPobytu" prefWidth="220.0">
@@ -54,7 +54,7 @@
                               </ChoiceBox>
                            </children>
                         </HBox>
-                        <HBox layoutX="447.0" layoutY="324.0" prefHeight="166.0" prefWidth="320.0">
+                        <HBox layoutX="587.0" layoutY="331.0" prefHeight="166.0" prefWidth="320.0">
                            <children>
                               <VBox prefHeight="166.0" prefWidth="160.0">
                                  <children>
@@ -94,14 +94,14 @@
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <TableView fx:id="konsultacjeTabela" layoutX="3.0" layoutY="1.0" prefHeight="514.0" prefWidth="356.0">
+                        <TableView fx:id="konsultacjeTabela" layoutX="3.0" layoutY="1.0" prefHeight="616.0" prefWidth="522.0">
                           <columns>
                             <TableColumn prefWidth="174.0" text="Data" />
                             <TableColumn prefWidth="180.0" text="Pesel lekarza" />
                           </columns>
                         </TableView>
-                        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="484.0" layoutX="408.0" layoutY="14.0" stroke="BLACK" strokeType="INSIDE" width="389.0" />
-                        <HBox layoutX="432.0" layoutY="88.0" prefHeight="58.0" prefWidth="350.0">
+                        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="484.0" layoutX="550.0" layoutY="22.0" stroke="BLACK" strokeType="INSIDE" width="389.0" />
+                        <HBox layoutX="574.0" layoutY="96.0" prefHeight="58.0" prefWidth="350.0">
                            <children>
                               <Label text="Imię lekarza:" />
                               <TextField prefHeight="25.0" prefWidth="220.0">
@@ -114,13 +114,13 @@
                               </TextField>
                            </children>
                         </HBox>
-                        <HBox layoutX="432.0" layoutY="146.0" prefHeight="44.0" prefWidth="350.0">
+                        <HBox layoutX="574.0" layoutY="154.0" prefHeight="44.0" prefWidth="350.0">
                            <children>
                               <Label text="Nazwisko lekarza:" />
                               <TextField prefHeight="25.0" prefWidth="220.0" />
                            </children>
                         </HBox>
-                        <HBox layoutX="432.0" layoutY="34.0" prefHeight="41.0" prefWidth="350.0">
+                        <HBox layoutX="574.0" layoutY="42.0" prefHeight="41.0" prefWidth="350.0">
                            <children>
                               <Label text="Data:" />
                               <DatePicker prefWidth="220.0">
@@ -130,7 +130,7 @@
                               </DatePicker>
                            </children>
                         </HBox>
-                        <HBox layoutX="432.0" layoutY="206.0" prefHeight="48.0" prefWidth="350.0">
+                        <HBox layoutX="574.0" layoutY="214.0" prefHeight="48.0" prefWidth="350.0">
                            <children>
                               <Label text="Pesel lekarza" />
                               <TextField prefHeight="25.0" prefWidth="220.0">
@@ -140,7 +140,7 @@
                               </TextField>
                            </children>
                         </HBox>
-                        <HBox layoutX="447.0" layoutY="324.0" prefHeight="166.0" prefWidth="320.0">
+                        <HBox layoutX="589.0" layoutY="332.0" prefHeight="166.0" prefWidth="320.0">
                            <children>
                               <VBox prefHeight="166.0" prefWidth="160.0">
                                  <children>
@@ -180,15 +180,15 @@
               <content>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <TableView fx:id="rezerwacjePacjentaTabela" prefHeight="515.0" prefWidth="381.0">
+                        <TableView fx:id="rezerwacjePacjentaTabela" prefHeight="612.0" prefWidth="514.0">
                           <columns>
-                            <TableColumn fx:id="numerRejestracjiPacj" prefWidth="115.0" text="Id oddziału" />
-                              <TableColumn fx:id="rejestracjeDataOd" prefWidth="127.0" text="Data od" />
-                              <TableColumn fx:id="RejestracjeDataDo" prefWidth="134.0" text="Data do" />
+                            <TableColumn fx:id="idOddzialuRezerwacjiKolumna" prefWidth="115.0" text="Id oddziału" />
+                              <TableColumn fx:id="rezerwacjaDataOdkolumna" prefWidth="127.0" text="Data od" />
+                              <TableColumn fx:id="rezerwacjaDataDoKolumna" prefWidth="134.0" text="Data do" />
                           </columns>
                         </TableView>
-                         <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="484.0" layoutX="408.0" layoutY="14.0" stroke="BLACK" strokeType="INSIDE" width="389.0" />
-                        <HBox layoutX="432.0" layoutY="88.0" prefHeight="58.0" prefWidth="350.0">
+                         <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="484.0" layoutX="548.0" layoutY="25.0" stroke="BLACK" strokeType="INSIDE" width="389.0" />
+                        <HBox layoutX="572.0" layoutY="99.0" prefHeight="58.0" prefWidth="350.0">
                            <children>
                               <Label text="Data od:" />
                               <DatePicker prefWidth="220.0">
@@ -198,7 +198,7 @@
                               </DatePicker>
                            </children>
                         </HBox>
-                        <HBox layoutX="432.0" layoutY="146.0" prefHeight="44.0" prefWidth="350.0">
+                        <HBox layoutX="572.0" layoutY="157.0" prefHeight="44.0" prefWidth="350.0">
                            <children>
                               <Label text="Data do:" />
                               <DatePicker prefWidth="220.0">
@@ -208,7 +208,7 @@
                               </DatePicker>
                            </children>
                         </HBox>
-                        <HBox layoutX="432.0" layoutY="34.0" prefHeight="41.0" prefWidth="350.0">
+                        <HBox layoutX="572.0" layoutY="45.0" prefHeight="41.0" prefWidth="350.0">
                            <children>
                               <Label prefHeight="15.0" prefWidth="70.0" text="Oddział:" />
                               <ChoiceBox fx:id="rezerwacjeOddzial" prefWidth="220.0">
@@ -218,7 +218,7 @@
                               </ChoiceBox>
                            </children>
                         </HBox>
-                        <HBox layoutX="447.0" layoutY="324.0" prefHeight="166.0" prefWidth="320.0">
+                        <HBox layoutX="587.0" layoutY="335.0" prefHeight="166.0" prefWidth="320.0">
                            <children>
                               <VBox prefHeight="166.0" prefWidth="160.0">
                                  <children>
@@ -250,7 +250,7 @@
                               </VBox>
                            </children>
                         </HBox>
-                        <HBox layoutX="432.0" layoutY="196.0" prefHeight="44.0" prefWidth="350.0">
+                        <HBox layoutX="572.0" layoutY="207.0" prefHeight="44.0" prefWidth="350.0">
                            <children>
                               <Label text="Czy przyjęty " />
                               <CheckBox mnemonicParsing="false">
@@ -268,15 +268,15 @@
                <content>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                         <children>
-                           <TableView fx:id="zleceniaBadanTabela" prefHeight="515.0" prefWidth="381.0">
+                           <TableView fx:id="zleceniaBadanTabela" prefHeight="620.0" prefWidth="507.0">
                              <columns>
                                <TableColumn fx:id="numerRejestracjiPacj" prefWidth="115.0" text="Id oddziału" />
                                  <TableColumn fx:id="rejestracjeDataOd" prefWidth="127.0" text="Data od" />
                                  <TableColumn fx:id="RejestracjeDataDo" prefWidth="134.0" text="Data do" />
                              </columns>
                            </TableView>
-                            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="484.0" layoutX="408.0" layoutY="14.0" stroke="BLACK" strokeType="INSIDE" width="389.0" />
-                           <HBox layoutX="432.0" layoutY="88.0" prefHeight="58.0" prefWidth="350.0">
+                            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="484.0" layoutX="548.0" layoutY="23.0" stroke="BLACK" strokeType="INSIDE" width="389.0" />
+                           <HBox layoutX="572.0" layoutY="97.0" prefHeight="58.0" prefWidth="350.0">
                               <children>
                                  <Label text="Data od:" />
                               <DatePicker prefWidth="220.0">
@@ -286,7 +286,7 @@
                               </DatePicker>
                               </children>
                            </HBox>
-                           <HBox layoutX="432.0" layoutY="146.0" prefHeight="44.0" prefWidth="350.0">
+                           <HBox layoutX="572.0" layoutY="155.0" prefHeight="44.0" prefWidth="350.0">
                               <children>
                                  <Label text="Data do:" />
                               <DatePicker prefWidth="220.0">
@@ -296,7 +296,7 @@
                               </DatePicker>
                               </children>
                            </HBox>
-                           <HBox layoutX="432.0" layoutY="34.0" prefHeight="41.0" prefWidth="350.0">
+                           <HBox layoutX="572.0" layoutY="43.0" prefHeight="41.0" prefWidth="350.0">
                               <children>
                                  <Label prefHeight="15.0" prefWidth="70.0" text="Oddział:" />
                               <ChoiceBox fx:id="zleceniaBadanOddzial" prefWidth="220.0">
@@ -306,7 +306,7 @@
                               </ChoiceBox>
                               </children>
                            </HBox>
-                           <HBox layoutX="447.0" layoutY="324.0" prefHeight="166.0" prefWidth="320.0">
+                           <HBox layoutX="587.0" layoutY="333.0" prefHeight="166.0" prefWidth="320.0">
                               <children>
                                  <VBox prefHeight="166.0" prefWidth="160.0">
                                     <children>
@@ -338,7 +338,7 @@
                                  </VBox>
                               </children>
                            </HBox>
-                           <HBox layoutX="432.0" layoutY="196.0" prefHeight="44.0" prefWidth="350.0">
+                           <HBox layoutX="572.0" layoutY="205.0" prefHeight="44.0" prefWidth="350.0">
                               <children>
                                  <Label text="Czy przyjęty " />
                                  <CheckBox mnemonicParsing="false">

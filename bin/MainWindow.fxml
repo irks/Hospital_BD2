@@ -1,15 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.text.*?>
 <?import javafx.scene.control.*?>
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.BorderPane?>
 
-
-<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.MainWindowController">
+<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.MainWindowController">
    <children>
-      <ToggleButton mnemonicParsing="false" text="Strona główna" />
-      <ToggleButton mnemonicParsing="false" onAction="#onActionPatientsButton" text="Pacjenci" />
-      <ToggleButton mnemonicParsing="false" text="ToggleButton" />
+      <ToggleButton mnemonicParsing="false" text="Strona główna">
+         <font>
+            <Font size="18.0" />
+         </font></ToggleButton>
+      <ToggleButton mnemonicParsing="false" onAction="#onActionPatientsButton" text="Pacjenci">
+         <font>
+            <Font size="18.0" />
+         </font></ToggleButton>
    </children>
 </HBox>

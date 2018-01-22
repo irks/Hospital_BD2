@@ -7,6 +7,8 @@ import java.time.LocalDate;
 import database.DaoOddzial;
 import database.DaoPacjent;
 import database.DaoRejestracja;
+import javafx.beans.property.SimpleLongProperty;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -71,6 +73,16 @@ public class SzczegolyPacjentaController {
     private TableColumn<Rejestracja, String> dataDoPobytuKolumna;
     @FXML
     private TableColumn<Rejestracja, String> dataOdPobytuKolumna;
+    
+    @FXML
+    private TableColumn<Rejestracja, Long> idOddzialuRezerwacjiKolumna;
+    
+
+    @FXML
+    private TableColumn<Rejestracja, String> rezerwacjaDataDoKolumna;
+
+    @FXML
+    private TableColumn<Rejestracja, String> rezerwacjaDataOdkolumna;
 
     
     @FXML
@@ -100,15 +112,15 @@ public class SzczegolyPacjentaController {
     
     void fillPacjentData(Pacjent pacjent) throws Exception {
 		this.pobytyTabela.setItems(DaoRejestracja.searchRejestracjePacjenta(pacjent.getPacjent_id(), true));
-		this.rejestracjeDataOd.setCellValueFactory(cellData->cellData.getValue().getDataOd());
-		this.RejestracjeDataDo.setCellValueFactory(cellData->cellData.getValue().getDataDo());
+		this.rejestracjeDataOd.setCellValueFactory(cellData->(new SimpleStringProperty(cellData.getValue().getDataOd().toString())));
+		this.RejestracjeDataDo.setCellValueFactory(cellData->(new SimpleStringProperty(cellData.getValue().getDataDo().toString())));
 //		this.czyPrzyjetyRej.setCellValueFactory(cellData->cellData.getValue().getCzyPrzyjety().asObject());
 //		this.numerRejestracjiPacj.setCellValueFactory(cellData->cellData.getValue().getRejestracjaId().asObject());
     	
 		oddzialPobytu.setItems(DaoOddzial.searchOddzialy());
-		this.dataDoPobytuKolumna.setCellValueFactory(cellData->cellData.getValue().getDataDo());
-		this.dataOdPobytuKolumna.setCellValueFactory(cellData->cellData.getValue().getDataOd());
-		this.idOddzialuPobytKolumna.setCellValueFactory(cellData->cellData.getValue().getRejestracjaId().asObject());
+		this.dataDoPobytuKolumna.setCellValueFactory(cellData->(new SimpleStringProperty(cellData.getValue().getDataDo().toString())));
+		this.dataOdPobytuKolumna.setCellValueFactory(cellData->(new SimpleStringProperty(cellData.getValue().getDataOd().toString())));
+		this.idOddzialuPobytKolumna.setCellValueFactory(cellData->cellData.getValue().getIdOddzialu().asObject());
 		
 		oddzialPobytu.setConverter(new StringConverter<Oddzial>() {
 
@@ -123,6 +135,12 @@ public class SzczegolyPacjentaController {
 	                ap.getNazwa().equals(string)).findFirst().orElse(null);
 	        }
 	    });
+		
+		rezerwacjePacjentaTabela.setItems(DaoRejestracja.searchRejestracjePacjenta(pacjent.getPacjent_id(), false));
+		this.idOddzialuRezerwacjiKolumna.setCellValueFactory(cellData->cellData.getValue().getIdOddzialu().asObject());
+		this.rezerwacjaDataDoKolumna.setCellValueFactory(cellData->(new SimpleStringProperty(cellData.getValue().getDataDo(),toString())));
+		this.rezerwacjaDataOdkolumna.setCellValueFactory(cellData->(new SimpleStringProperty(cellData.getValue().getDataOd().toString())));
+		
     }
  
  
@@ -169,26 +187,27 @@ public class SzczegolyPacjentaController {
 
     @FXML
     void onActionButtonDeletePobyt(ActionEvent event) throws Exception {
-    	if(DaoRejestracja.deleteRejestracjaWithId(Long.valueOf(this.pobytyTabela.getSelectionModel().getSelectedItem().getRejestracjaId().get())))
-    	{
-    		int selectedIdx = pobytyTabela.getSelectionModel().getSelectedIndex();
-    		pobytyTabela.getItems().remove(selectedIdx);
-        	dataOdPobyt.setValue(null);
-        	dataDoPobyt.setValue(null);
-    		oddzialPobytu.setValue(null);
-    	}
+//    	if(DaoRejestracja.deleteRejestracjaWithId(Long.valueOf(this.pobytyTabela.getSelectionModel().getSelectedItem().getRejestracjaId().get())))
+//    	{
+//    		int selectedIdx = pobytyTabela.getSelectionModel().getSelectedIndex();
+//    		pobytyTabela.getItems().remove(selectedIdx);
+//        	dataOdPobyt.setValue(null);
+//        	dataDoPobyt.setValue(null);
+//    		oddzialPobytu.setValue(null);
+//    	}
     }
     @FXML
     void onActionButtonNewPobyt(ActionEvent event) throws Exception {
-//    	Date dataOd= Date.valueOf(dataOdPobyt.getValue());
-//    	Date dataDo = Date.valueOf(dataDoPobyt.getValue());
-//    	
-//    	DaoRejestracja.insertRejestracja(dataOd, dataDo, true);
-//    	this.pobytyTabela.setItems(DaoRejestracja.searchRejestracjePacjenta(clickedPacjent.getPacjent_id(), true));
-//    	
-//        pacjentImieKolumna.setCellValueFactory(cellData -> cellData.getValue().getName());
-//        pacjentNazwiskoKolumna.setCellValueFactory(cellData -> cellData.getValue().getSurname());
-//        pacjentPeselKolumna.setCellValueFactory(cellData -> cellData.getValue().getPesel().asObject());
+    	Date dataOd= Date.valueOf(dataOdPobyt.getValue());
+    	Date dataDo = Date.valueOf(dataDoPobyt.getValue());
+    	long idOddzialu = oddzialPobytu.getValue().getOddzialId().get();
+    	
+    	DaoRejestracja.insertRejestracja(dataOd, dataDo, true, clickedPacjent.getPacjent_id().get(), idOddzialu);
+    	this.pobytyTabela.setItems(DaoRejestracja.searchRejestracjePacjenta(clickedPacjent.getPacjent_id(), true));
+    	
+        dataOdPobytuKolumna.setCellValueFactory(cellData -> (new SimpleStringProperty(cellData.getValue().getDataOd().toString())));
+        dataDoPobytuKolumna.setCellValueFactory(cellData -> (new SimpleStringProperty(cellData.getValue().getDataDo().toString())));
+        idOddzialuPobytKolumna.setCellValueFactory(cellData -> cellData.getValue().getIdOddzialu().asObject());
     }
     @FXML
     void onActionButtonClearPobytFields(ActionEvent event) {

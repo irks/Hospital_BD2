@@ -126,4 +126,10 @@ public class DAOManager {
             close();
         }
     }
+
+	public static Connection getConn() {
+		return conn;
+	}
+    
+    
 }
